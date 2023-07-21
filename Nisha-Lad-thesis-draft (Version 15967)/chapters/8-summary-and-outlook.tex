@@ -1,0 +1,36 @@
+%------------------------------------
+%	7. Summary & Outlook
+%------------------------------------
+
+
+\chapter{Summary and Outlook}
+\label{chapter-8}
+
+% 1. Intro & background
+
+The current algorithms employed to reconstruct tracks for High-Energy particle detectors have proven to be very powerful. These methods include seeded track following and the combinatorial KF. However, they are not designed to handle the conditions presented by extreme environments such as the HL-LHC, as these approaches do not scale well as the seed number grows. As discussed in Chapter \ref{chapter-2}, the task of track reconstruction becomes increasingly difficult as the luminosity increases. The collision rate and hence hit occupancy will also grows significantly during future upgrades of the LHC program. Therefore, novel and precise tracking methodologies, as well as efficient use of computing power, are paramount for track reconstruction. The heart of problem tackles the simultaneous consideration of reducing the amount of CPU usage, and hence the environmental impact, as well as maintaining the ability to reconstruct tracks with minimal loss in efficiency. As such, enhancements in track reconstruction algorithms are imperative for the future growth of particle detector experiments. 
+
+The use of ML algorithms for track reconstruction has provided a route to develop methodologies that can save vast amounts of CPU resources. An original approach has been explored in great detail in this thesis utilising GNN architectures for efficient track reconstruction. This process begins with a procedure to construct a graph network from a collision event, followed by an algorithm designed to iteratively identify and extract track candidates. 
+
+
+% 2. Section on graph building and the ML classification predictor algorithm developed…
+
+When constructing a graph network for track reconstruction, an essential aspect to consider is the ability to identify compatible hit connections to build graph edges. Chapter \ref{chapter-4} successfully demonstrates a methodology to achieve this, whereby a ML-based algorithm is developed to predict if a pair of hits belong to the same track. This process is essential for efficient construction of the graph network for track reconstruction, as it successfully reduces the number of fake edges and hence increases the accuracy in predicting compatible hit-pairs. This method also reduces the number of computations required and propagates these benefits to downstream algorithms within the track reconstruction software.
+
+The implementation of the ML-based predictor begins with the exploitation of input hit features in its design, namely Pixel cluster width and inverse track inclination. The algorithm employs the use of Bayesian analysis and Kernel Density Estimates to discriminate between hit-pair classes. The implementation of the classifier’s predictions as a LUT is advantageous here in order to reduce computational overheads, which bodes well for use in realistic detectors.
+
+The application of the ML-based classifier was used for seed selection in the ATLAS ID. It has successfully optimised the HLT ID track seeding software for ATLAS Run-3 and beyond, by reducing the number of fake track seeds and provided significant savings in computing resources. The trained predictor in the form of a LUT yields 2.3$\times$ speed-up with minimal loss in efficiency (1.1\%) at $< \mu >$= 80 compared with the standard trigger tracking. 
+
+%The developed ML framework is advantageous for many reasons.
+
+
+
+% 4. GNN algorithm
+
+After having constructed the graph network from a collision event, a procedure is needed to identify and extract track candidates in multi-element silicon detectors. Chapters 5 and 6 describe a novel GNN pattern recognition algorithm developed in order to achieve this. The graph network learns local track parameters by iteratively resolving outlier edge connections in order to discover track candidates. The main stages of the algorithm consist of a GMR stage and neighbourhood information aggregation stage. The network clusters edges together in order to reduce the Gaussian mixture present at each graph node, where the optimal distance of clusterization is learned via training a SVM. This process proves to be an effective initial step in ambiguity resolution of outlier edges. The next stage involves the unique use of the Kalman filter, which is an elegant instrument for both information propagation and track extraction. 
+
+The iterative methodology of ambiguity resolution in the graph network works well to identify outlier edges. The algorithm yields promising results on both a simple MC toy model and the TrackML model for the endcap region. A preliminary result of greater than 90\% track reconstruction efficiency is achieved for fully contained tracks within the endcap volume of the TrackML detector, with $p_{\text{T}} >$ 1GeV. It is promising to see that this methodology provides a high performance on the endcap and has shown to successfully extract track candidates compatible with the particle motion model. This demonstrates that even with suboptimal track reconstruction in this regime, it is possible to make algorithmic advancements to the track reconstruction pipeline to improve the identification of fake seeds and reduce CPU resources, whilst maintaining efficiency. However, the algorithm is still within its early stages of development. Further investigation and analysis is needed in order to improve the identification and extraction of track candidates within the barrel region of the TrackML detector.
+
+
+% 5. conclusions & end
+As future upgrades to particle detectors will present reconstruction challenges for silicon tracking detectors in terms of hit occupancy, it is essential that computing resource use is reduced, whilst maintaining tracking capabilities. This provides the motivation for sustainable advancements in algorithmic developments as detectors become increasingly powerful. The findings from the work presented in this thesis show a promising direction that can be taken in ATLAS, as well as other High-Energy particle detector experiments, in order to achieve this goal. 

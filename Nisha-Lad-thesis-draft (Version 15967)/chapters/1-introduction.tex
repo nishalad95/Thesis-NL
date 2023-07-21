@@ -1,0 +1,44 @@
+%---------------------
+%	1. Introduction
+%---------------------
+
+%\doublespacing
+%\setcounter{section}{0}
+\chapter{Introduction}
+
+\setlength\parindent{0pt}
+
+In particle physics collider experiments, reconstructing particle trajectories (tracks) in a detector is computationally and intellectually one of the most challenging parts of experimental data analysis. The track finding (aka pattern recognition) problem is to associate individual measurements, known as \textit{hits}, into sequences representing tracks. The created particles have a wide range of possible properties, especially different creation vertices and momenta, and their trajectories have non-deterministic contributions from material interactions. These factors, in combination with non-homogeneous magnetic fields and detector inefficiencies, can lead to the possibility of confusion and hence the creation of fake tracks. All of these effects depend strongly on the measurement density and the superimposed interactions that do not come from the primary vertex when hard scattering occurs, known as \textit{pile-up} interactions.
+
+The scale of such a problem is enormous; a typical \ac{LHC} detector contains many thousands of sensors measuring particle positions along their trajectory with a total number of sensor channels up to hundreds of millions. Given that the number of hits can be up to $4 \times 10^{5}$ per event, this indicates that the number of tracks can be several thousands. In addition to this, for on-line event selection events must be reconstructed at a rate between 100 kHz and 1 MHz or more. Tracks are widely used for a variety of downstream applications and are essential in all physics signatures, so their accurate reconstruction is a critical task.   
+
+Existing solutions adopted in many silicon-based detectors usually rely on well-established algorithms based on seeded track following and the combinatorial \ac{KF} \cite{AGOSTINELLI2003250} that are often implemented specifically for each experiment. This stage of the algorithm combines hits from a subset of sensors into short track segments called seeds. The track following stage traces each seed through the detector volume and picks up hits belonging to a seeded track.
+
+While these type of algorithms have proven to be quite powerful in the past, they do not scale favorably. The seed number scales non-linearly with the number of hits, and the corresponding CPU time increase (typically close to cubical) creates huge and ever-increasing demand for computing power. Naturally, the question arises whether new algorithms and different approaches exist that might be better suited to handle the conditions at the \ac{HL-LHC} phase.
+
+As the \ac{HL-LHC} is expected to reach unprecedented collision intensities, this will greatly increase the complexity of tracking within the event reconstruction. The drawback of these past methods motivates investigating novel approaches for track finding, in particular, those based on the \ac{ML} techniques. The benefits of such an approach could lead to tens of millions of pounds savings in CPU resources over the next 20 years of life of the \ac{LHC}, as well as benefiting all future collider experiments.
+
+In recent years, algorithms for track pattern recognition based on Graph Neural Networks (GNNs) have emerged as a particularly promising route. This thesis describes the work to improve the understanding of track reconstruction, via a novel methodology using graph based methods, for high energy particle detector experiments. This is primarily achieved through the development of algorithms used to construct graph networks with compatible edge connections, as well as the extraction of good track candidates from graph networks. 
+
+This thesis is structured in the following manner:
+
+Chapter \ref{chapter-2} describes the ATLAS detector and the CERN accelerator complex. Details of future upgrades to the particle detector experiment are also given.
+
+Chapter \ref{chapter-3} provides an overview of charged particle trajectory (track) reconstruction in silicon based particle detectors. Next, the TrackML detector model is introduced \cite{kaggle-trackml}. TrackML is a realistic detector model simulation and the TrackML Particle Tracking challenge is an online \ac{ML} competition, organised by the open-source data science community platform, Kaggle, in order to encourage the development of innovative \ac{ML} algorithms for track reconstruction. This chapter also presents an introduction to graph network structures and the motivation for track reconstruction using graph-based architectures.
+
+Chapter \ref{chapter-4} describes the development and application of an ML-based algorithm which predicts if a pair of hits belong to the same track given input hit features. This chapter showcases a methodology that can be used for graph building within track reconstruction.
+
+Chapter \ref{chapter-5} encapsulates the development of a novel pattern recognition algorithm utilising \acs{GNN} architectures and \ac{KF}s in order to extract track candidates in a silicon based Pixel detector. The \acs{GNN} track reconstruction algorithm and the application to a simple \ac{MC} model is outlined in this chapter.
+
+Chapter \ref{chapter-6} provides the implementation of the \acs{GNN} algorithm specifically for the TrackML detector.
+
+Chapter \ref{chapter-7} presents results of the application and performance of the \acs{GNN} algorithm on the TrackML detector model, as well as the challenges faced during development. Preliminary investigations into improvements and an outlook to software enhancements are also discussed.
+
+Chapter \ref{chapter-8} contains some concluding remarks.
+
+The author’s contribution to the work presented in this thesis is as follows.
+
+The author was an active member of the \ac{ID} trigger group at the ATLAS experiment throughout their PhD, starting with their qualification task on developing an ML-based classifier for measurement-to-track association to predict if a pair of hits belong to the same track for the ATLAS ID trigger. This work was presented at the Advanced Computing and Analysis Techniques (ACAT) online conference in Daejeon Korea, in 2021 and at the Institute of Physics (IoP) High Energy Particle Physics and Astroparticle Physics (HEPP and APP) conference in 2022. This work is published in the Journal of Physics: Conference Series \cite{Lad_2023} and the software is implemented in the optimisation of the \ac{HLT} ID track seeding software for ATLAS Run-3 and beyond \cite{Grandi:2728111, Long:2813981}. The author also played a key role in contributing to the ID trigger validation tasks, in 2022. Such tasks involved weekly reprocessing for validation of upcoming software releases, in order to catch signs of rare bugs, test online monitoring and validate the output of the \ac{HLT} algorithms.
+
+The author presented the development and applications of the GNN-based algorithm for track reconstruction at the 2022 Connecting the Dots (CTD) conference at the University of Princeton USA, and is currently under review for publication in the Springer Journal: Computing for Software and Big Science \cite{Lad_2023_gnn}. The author has also presented at several workshops, including the dedicated \acs{GNN} Google DeepMind mini-workshop, held at University College London in 2023.
+

@@ -1,0 +1,285 @@
+\documentclass[12pt, a4paper]{book}
+\usepackage{amsmath, nccmath}
+\usepackage{subfiles}
+\usepackage[colorlinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{blindtext}
+\usepackage{subfig}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{siunitx}
+\usepackage{derivative}
+\usepackage{geometry}
+\usepackage{ amssymb }
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{braket}
+\usepackage{titlesec}
+\usepackage{epstopdf}
+\usepackage{cite}
+\usepackage{asymptote}
+\usepackage{tikz,tikz-3dplot}
+\usepackage{url}
+\usepackage{ragged2e}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[english]{babel}
+\pagenumbering{roman}
+\newcommand{\sectionbreak}{\clearpage}
+\hypersetup{urlcolor=blue, linkcolor=blue, citecolor=blue}
+\geometry{margin=1.25in}
+\usepackage{fancyhdr}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{xcolor}
+% \usepackage[printonlyused,nohyperlinks]{acronym}
+\usepackage[nohyperlinks]{acronym}
+%\usepackage{stackengine}
+
+\usepackage{threeparttable}
+
+% rotation of figure
+\usepackage{rotating}
+\usepackage{tikz}
+
+% confusion matrices 
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+
+
+%---------------------
+%	Line numbers!! - can be removed at the end
+%---------------------
+\usepackage{lineno}
+\linenumbers
+
+
+%-----------------------
+%	PRELIM SECTIONS
+%-----------------------
+
+\newcommand\summaryname{Abstract}
+\newenvironment{Abstract}%
+    {\begin{center}%
+    \bfseries{\summaryname} \end{center}}%
+
+\newenvironment{Impact}%
+    {\begin{center}%
+    \bfseries Impact Statement\end{center}}
+    % {\vfill\null}
+
+\newenvironment{acknowledgements}%
+    {\clearpage\thispagestyle{empty}\null\vfill\begin{center}%
+    \bfseries Acknowledgements
+    \end{center}}%
+    {\vfill\null}
+
+\newenvironment{Declaration}%
+    {\clearpage\thispagestyle{empty}\null\vfill\begin{center}%
+    \bfseries Declaration\end{center}}%
+    {\vfill\null}
+
+\pagestyle{plain}
+\begin{document}
+\begin{titlepage}
+%\newgeometry{margin=0cm}
+%\begin{figure}[t]
+%\includegraphics{black.eps}
+%\end{figure}
+%\pagenumbering{arabic}
+
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\center % Center everything on the page
+
+
+
+%-----------------------
+%	HEADING SECTIONS
+%-----------------------
+\textsc{}\\[2.0cm]
+\textsc{\LARGE University College London}\\[0.5cm] % Name of your university/college
+\textsc{\Large Department of Physics \& Astronomy}\\[1.0cm] % Major heading such as course name
+%\textsc{Centre of Doctoral Training \\in \\Data Intensive Science}\\[0.5cm] % Minor heading such as course title
+
+
+
+%---------------------
+%	TITLE SECTION
+%---------------------
+\HRule \\[0.65cm]
+{ \huge \bfseries Graph Neural Networks for Pattern Recognition in LHC Data}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+ 
+%--------------------
+%	AUTHOR SECTION
+%--------------------
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+Nisha \textsc{Lad} % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisors:} \\
+Nikos \textsc{Konstantinidis} \& Dmitry \textsc{Emeliyanov} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[2cm]
+
+
+
+%--------------------
+%	DATE SECTION
+%--------------------
+{\centering{
+%\vspace*{0.5cm}
+Submitted in partial fulfillment of the \\ 
+\vspace*{0.2cm} requirements for the degree of \par
+\vspace*{0.3cm}
+{\bfseries Doctor of Philosophy \par} 
+\vspace*{0.3cm} at \\
+\vspace*{0.3cm}
+{\bfseries University College London \par}
+}}
+\vspace*{1.5cm}
+{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+\vfill % Fill the rest of the page with whitespace
+\end{titlepage}
+
+
+\pagenumbering{arabic}
+
+
+%---------------------
+%	Declaration
+%---------------------
+\begin{Declaration}
+\doublespacing
+\input{prelim/declaration.tex}
+\end{Declaration}
+
+
+%---------------------
+%	Abstract
+%---------------------
+%\vspace*{2in}
+\newpage
+\begin{Abstract}
+\doublespacing
+\input{prelim/abstract.tex}
+\end{Abstract}
+
+
+%---------------------
+%	Impact statement
+%---------------------
+\newpage
+\begin{Impact}
+\doublespacing
+\input{prelim/impact_statement.tex}
+\end{Impact}
+
+
+%---------------------
+%	Acknowledgements
+%---------------------
+
+% \vspace*{2in}
+\newpage
+\begin{acknowledgements}
+\doublespacing
+\input{prelim/acknowledgements.tex}
+\end{acknowledgements}
+
+
+%---------------------
+%	Contents
+%---------------------
+\doublespacing
+\tableofcontents
+\onehalfspacing
+% \glsaddall
+
+
+
+%---------------------
+%	Acronyms
+%---------------------
+\input{prelim/acronyms.tex}
+%\printglossary[type=\acronymtype,title=List of Acronyms]
+%\printglossary[type=\acronymtype]
+
+
+%-----------------
+%	CHAPTERS
+%-----------------
+\restoregeometry
+\doublespacing
+
+
+\pagestyle{fancy}
+\fancyhf{}
+%\fancyhead[LE,RO]{\thepage}
+\fancyhead[R]{\thepage}
+%\fancyhead[RE,LO]{\textbf{\rightmark}}
+\fancyhead[L]{\textbf{\nouppercase{\rightmark}}}
+
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\textbf{\nouppercase{\rightmark}}}
+}
+
+
+
+%---------------------
+%	Chapters
+%---------------------
+\input{chapters/1-introduction}
+\input{chapters/2-LHC-ATLAS}
+\input{chapters/3-track-reconstruction}
+\input{chapters/4-ml-based-predictor}
+\input{chapters/5-gnn-algorithm}
+\input{chapters/6-trackml}
+\input{chapters/7-results-discussion}
+\input{chapters/8-summary-and-outlook}
+
+
+\newpage
+\empty
+
+
+%---------------------
+%	List of Figures
+%---------------------
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+
+%---------------------
+%	List of Tables
+%---------------------
+\newpage
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+
+%---------------------
+%	BIBLIOGRAPHY
+%---------------------
+\addcontentsline{toc}{chapter}{References}
+% \bibliographystyle{unsrt}
+\bibliographystyle{bibliography/JHEP}
+\bibliographystyle{plainurl}
+\bibliography{bibliography/LHC-ATLAS}
+
+
+\end{document}
